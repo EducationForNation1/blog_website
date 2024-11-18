@@ -51,8 +51,8 @@ def blogs(request, slug):
 def search(request):
    keyword = request.GET.get('keyword')
    blogs = Blogs.objects.filter(Q(title__icontains=keyword) | Q(short_description__icontains=keyword) | Q(blog_body__icontains=keyword), status='published' )
-   content={
+   context={
       'blogs':blogs,
       'keyword':keyword
    }
-   return render(request, 'search.html',content)
+   return render(request, 'search.html',context)
